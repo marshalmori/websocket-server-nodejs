@@ -35,11 +35,13 @@ class Server {
   sockets() {
     this.io.on("connection", (socket) => {
       socket.on("disconnect", () => {
-        console.log("Cliente desconectado", socket.id);
+        // console.log("Cliente desconectado", socket.id);
       });
 
-      socket.on("enviar-mensaje", (payload) => {
-        this.io.emit("enviar-mensaje", payload);
+      socket.on("enviar-mensaje", (payload, callback) => {
+        const id = 1234567890;
+        callback(id);
+        // this.io.emit("enviar-mensaje", payload);
       });
     });
   }
